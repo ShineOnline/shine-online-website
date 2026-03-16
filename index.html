@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shine Online | AI & Digital Marketing UK</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@800&display=swap" rel="stylesheet">
 <style>
   :root {
     --black: #0a0a0a;
@@ -1433,7 +1436,7 @@
       <div class="dropdown-menu" id="servicesMenu">
         <a onclick="navTo('ai-seo')">🤖 AI SEO</a>
         <a onclick="navTo('ai-automation')">⚡ AI Automation</a>
-        <a onclick="navTo('social-media')">📱 Social Media</a>
+        <a onclick="navTo(\'social-media\')">📱 Social Media</a>
         <a onclick="navTo('seo')">🔍 SEO</a>
         <a onclick="navTo('ppc')">📈 PPC Advertising</a>
         <a onclick="navTo('web-design')">💻 Web Design</a>
@@ -1575,7 +1578,7 @@
         <div class="service-card" onclick="showPage('social-media')">
           <div class="service-emoji">📱</div>
           <h3>Social Media</h3>
-          <p>Weekly content creation and posting across LinkedIn, Facebook, and Instagram — keeping your business active, visible, and worth contacting.</p>
+          <p></p>
           <div class="service-arrow">→</div>
         </div>
         <div class="service-card" onclick="showPage('web-design')">
@@ -2724,13 +2727,13 @@
 <div id="page-social-media" class="page">
   <div class="service-hero">
     <div class="service-hero-content">
-      <div class="breadcrumb"><span onclick="showPage('home')">Home</span> / <span onclick="showPage('home')">Services</span> / Social Media</div>
+      <div class="breadcrumb"><span onclick="showPage(\'home\')">Home</span> / <span onclick="showPage(\'home\')">Services</span> / Social Media</div>
       <span class="section-label">Social Media Management</span>
       <h1>Social Media That<br>Makes Your Business<br><span>Look Alive.</span></h1>
       <p>Your social media presence tells potential customers everything about your business before they ever pick up the phone. We manage your LinkedIn, Facebook, and Instagram — creating and posting content every week, so your business always looks active, professional, and worth contacting.</p>
       <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
         <button class="btn-primary" onclick="openModal()">Get Started</button>
-        <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+        <button class="btn-secondary" onclick="showPage(\'contact\')">Contact Us</button>
       </div>
     </div>
   </div>
@@ -2750,6 +2753,7 @@
         </ul>
       </div>
       <div class="split-visual">
+        <img class="split-visual-img" id="imgSocialMedia" src="" alt="Social Media" onload="this.classList.add(\'loaded\')" onerror="this.style.display=\'none\'">
         <div class="visual-block visual-gold">
           <div class="vis-circles"></div>
           <div class="vis-icon">📱</div>
@@ -2809,38 +2813,23 @@
       <div class="process-list" style="max-width:100%;margin-top:48px;">
         <div class="process-item">
           <div class="process-num">01</div>
-          <div>
-            <h3>Profile Audit</h3>
-            <p>We review your existing social profiles, assess what's working and what isn't, identify any gaps or inconsistencies in branding, and establish a baseline so we can measure growth from day one.</p>
-          </div>
+          <div><h3>Profile Audit</h3><p>We review your existing social profiles, assess what's working and what isn't, identify any gaps or inconsistencies in branding, and establish a baseline so we can measure growth from day one.</p></div>
         </div>
         <div class="process-item">
           <div class="process-num">02</div>
-          <div>
-            <h3>Brand & Content Strategy</h3>
-            <p>We get to know your business, your tone of voice, and the customers you want to reach. From this we build a content strategy that reflects who you are and speaks directly to the people most likely to hire you.</p>
-          </div>
+          <div><h3>Brand & Content Strategy</h3><p>We get to know your business, your tone of voice, and the customers you want to reach. From this we build a content strategy that reflects who you are and speaks directly to the people most likely to hire you.</p></div>
         </div>
         <div class="process-item">
           <div class="process-num">03</div>
-          <div>
-            <h3>Content Creation</h3>
-            <p>Our team creates the posts — copy, visuals, and formatting — tailored to each platform. Everything is produced in advance and checked for quality before it goes anywhere near your profiles.</p>
-          </div>
+          <div><h3>Content Creation</h3><p>Our team creates the posts — copy, visuals, and formatting — tailored to each platform. Everything is produced in advance and checked for quality before it goes anywhere near your profiles.</p></div>
         </div>
         <div class="process-item">
           <div class="process-num">04</div>
-          <div>
-            <h3>Weekly Posting</h3>
-            <p>Posts go live on a consistent weekly schedule across LinkedIn, Facebook, and Instagram. Your profiles stay active and current — without you needing to think about it, write anything, or spend a single hour on it yourself.</p>
-          </div>
+          <div><h3>Weekly Posting</h3><p>Posts go live on a consistent weekly schedule across LinkedIn, Facebook, and Instagram. Your profiles stay active and current — without you needing to think about it, write anything, or spend a single hour on it yourself.</p></div>
         </div>
         <div class="process-item">
           <div class="process-num">05</div>
-          <div>
-            <h3>Review & Optimisation</h3>
-            <p>Each month we review what performed best, refine the content strategy accordingly, and share a clear report with you. Over time, your presence grows stronger, your engagement improves, and your business looks increasingly credible online.</p>
-          </div>
+          <div><h3>Review & Optimisation</h3><p>Each month we review what performed best, refine the content strategy accordingly, and share a clear report with you. Over time, your presence grows stronger, your engagement improves, and your business looks increasingly credible online.</p></div>
         </div>
       </div>
     </div>
@@ -2851,12 +2840,12 @@
     <p>Let us handle your social media — so your business always looks active, professional, and worth contacting.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
       <button class="btn-primary" onclick="openModal()">Get Started</button>
-      <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      <button class="btn-secondary" onclick="showPage(\'contact\')">Contact Us</button>
     </div>
   </div>
 
   <footer style="background:var(--black);padding:40px 5%;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;">
-    <a onclick="showPage('home')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Shine Online</a>
+    <a onclick="showPage(\'home\')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Shine Online</a>
     &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Shine Online
   </footer>
 </div>
