@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shine Online | AI & Digital Marketing UK</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --off-white: #f7f7f5;
+    --gold: #F5A623;
+    --gold-light: #FFD080;
+    --accent: #FF6B35;
+    --mid-grey: #888;
+    --light-grey: #e8e8e8;
+    --border: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+
+  /* ─── PAGES ─── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 72px;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+
+  /* LOGO */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .logo-shine {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.7rem;
+    color: var(--black);
+    letter-spacing: -1px;
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .logo-online {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.6rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: normal;
+    width: 100%;
+  }
+
+  .logo-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-top: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #F5A623 0%, #FFD700 60%, transparent 100%);
+  }
+
+  /* NAV LINKS */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--black);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* DROPDOWN */
+  .nav-dropdown {
+    position: relative;
+  }
+
+  .nav-dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .nav-dropdown > a::after {
+    content: '▾';
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+  }
+
+  .nav-dropdown.open > a::after { transform: rotate(180deg); }
+
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: -20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px;
+    min-width: 220px;
+    display: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+
+  .nav-dropdown.open .dropdown-menu { display: block; }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: background 0.15s, color 0.15s;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .dropdown-menu a:hover {
+    background: var(--off-white);
+    color: var(--gold);
+  }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.2s !important;
+    cursor: pointer;
+  }
+
+  .nav-cta:hover { background: var(--gold) !important; color: var(--black) !important; }
+
+  /* PHONE in nav */
+  .nav-phone {
+    font-size: 0.88rem;
+    color: var(--mid-grey);
+    font-weight: 400;
+  }
+
+  .nav-phone a {
+    color: var(--black) !important;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(245,166,35,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(255,107,53,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 10% 70%, rgba(245,166,35,0.08) 0%, transparent 40%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(245,166,35,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,166,35,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.3);
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 4.2vw, 3.8rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255,255,255,0.65);
+    margin: 24px auto;
+    max-width: 680px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 16px 32px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(245,166,35,0.35);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 16px 32px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* hero phone strip */
+  .hero-phone-strip {
+    position: relative;
+    z-index: 2;
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+  }
+
+  .hero-phone-strip a {
+    color: var(--gold);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 100px 5%;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    max-width: 700px;
+    margin-bottom: 24px;
+  }
+
+  .section-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    max-width: 640px;
+  }
+
+  /* ─── MARQUEE ─── */
+  .marquee-wrap {
+    background: var(--black);
+    padding: 20px 0;
+    overflow: hidden;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+  }
+
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+  }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 40px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .marquee-item span {
+    color: var(--gold);
+    font-size: 1.2rem;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── SPLIT SECTIONS ─── */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .split.reverse { direction: rtl; }
+  .split.reverse > * { direction: ltr; }
+
+  .split-visual {
+    position: relative;
+    height: 420px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .split-visual-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: none;
+    z-index: 4;
+    border-radius: 20px;
+  }
+
+  .split-visual-img.loaded {
+    display: block;
+  }
+
+  .split-visual-img.loaded ~ .visual-block {
+    visibility: hidden;
+  }
+
+  .visual-block {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .visual-dark {
+    background: var(--black);
+  }
+
+  .visual-gold {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2000 50%, #1a1000 100%);
+  }
+
+  .visual-abstract {
+    background: linear-gradient(135deg, #0a0a0a, #1a1500);
+  }
+
+  .vis-circles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .vis-circles::before, .vis-circles::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(245,166,35,0.2);
+  }
+
+  .vis-circles::before {
+    width: 300px; height: 300px;
+    top: -50px; right: -50px;
+  }
+
+  .vis-circles::after {
+    width: 200px; height: 200px;
+    bottom: -30px; left: -30px;
+    border-color: rgba(255,107,53,0.2);
+  }
+
+  .vis-icon {
+    font-size: 4rem;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 40px rgba(245,166,35,0.4));
+  }
+
+  .vis-stat {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.3);
+    border-radius: 12px;
+    padding: 12px 20px;
+    text-align: center;
+    z-index: 3;
+  }
+
+  .vis-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .vis-stat-label {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+
+  /* ─── 4 STEPS ─── */
+  .steps-section {
+    background: var(--off-white);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 60px auto 0;
+  }
+
+  .step-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 28px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 3.5rem;
+    color: var(--gold);
+    opacity: 0.2;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .step-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* ─── VALUE PROPS ─── */
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .value-item {
+    background: var(--white);
+    padding: 44px 40px;
+    transition: background 0.2s;
+  }
+
+  .value-item:hover { background: var(--off-white); }
+
+  .value-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .value-item h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .value-item p {
+    font-size: 0.92rem;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* ─── DARK CTA BAND ─── */
+  .cta-band {
+    background: var(--black);
+    padding: 100px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.12), transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .cta-band h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cta-band h2 span { color: var(--gold); }
+
+  .cta-band p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .cta-phone {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(245,166,35,0.12);
+    border: 1px solid rgba(245,166,35,0.3);
+    border-radius: 12px;
+    padding: 20px 36px;
+    margin-top: 16px;
+  }
+
+  .cta-phone a {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .cta-phone-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ─── SERVICES CARDS ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 60px auto 0;
+  }
+
+  .service-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: block;
+  }
+
+  .service-card:hover {
+    background: var(--black);
+    color: var(--white);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+  }
+
+  .service-card:hover p { color: rgba(255,255,255,0.6); }
+
+  .service-card:hover .service-arrow { color: var(--gold); }
+
+  .service-emoji {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .service-arrow {
+    font-size: 1.2rem;
+    color: var(--gold);
+  }
+
+  /* ─── SERVICE PAGE HERO ─── */
+  .service-hero {
+    padding: 140px 5% 80px;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.15), transparent 70%);
+  }
+
+  .service-hero-content {
+    position: relative;
+    max-width: 800px;
+  }
+
+  .service-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin: 16px 0 24px;
+  }
+
+  .service-hero h1 span { color: var(--gold); }
+
+  .service-hero p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+    max-width: 620px;
+  }
+
+  /* ─── PROCESS STEPS ─── */
+  .process-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .process-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .process-item:last-child { border-bottom: none; }
+
+  .process-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1.2;
+  }
+
+  .process-item h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .process-item p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  /* ─── FEATURE GRID (AI automation) ─── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 60px auto 0;
+  }
+
+  .feature-card {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 28px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 8px 40px rgba(245,166,35,0.1);
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .feature-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .feature-card p {
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* ─── ABOUT ─── */
+  .about-intro {
+    background: var(--off-white);
+    padding: 120px 5% 80px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-visual {
+    position: relative;
+    height: 500px;
+    background: var(--black);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-visual-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: none;
+    z-index: 1;
+  }
+
+  .about-visual-img.loaded {
+    display: block;
+  }
+
+  .about-visual-img.loaded ~ .about-vis-placeholder {
+    display: none;
+  }
+
+  .about-vis-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-vis-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .about-vis-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .about-vis-sub {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .about-stat {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 20px;
+  }
+
+  .about-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .about-stat-num span { color: var(--gold); }
+
+  .about-stat-label {
+    font-size: 0.85rem;
+    color: var(--mid-grey);
+    margin-top: 6px;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-hero {
+    padding: 140px 5% 80px;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-hero::before {
+    content: '';
+    position: absolute;
+    bottom: -200px; left: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.1), transparent 70%);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 5%;
+  }
+
+  .contact-form {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px 40px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--black);
+    background: var(--white);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+  }
+
+  textarea { resize: vertical; min-height: 120px; }
+
+  .contact-info h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+  }
+
+  .contact-info p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-detail:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .contact-detail-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .contact-detail-text strong {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--mid-grey);
+    margin-bottom: 8px;
+  }
+
+  .contact-detail-text a, .contact-detail-text span {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--black);
+    text-decoration: none;
+    line-height: 1.6;
+  }
+
+  .contact-detail-text a:hover { color: var(--gold); }
+
+  /* ─── LEAD MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 48px 44px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.3);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--off-white);
+    border: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: var(--border); }
+
+  .modal h2 {
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .modal p.sub {
+    font-size: 0.9rem;
+    color: var(--mid-grey);
+    margin-bottom: 28px;
+  }
+
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-size: 0.92rem;
+  }
+
+  .radio-option:hover {
+    border-color: var(--gold);
+    background: rgba(245,166,35,0.05);
+  }
+
+  .radio-option input[type="radio"] {
+    width: auto;
+    accent-color: var(--gold);
+    margin: 0;
+  }
+
+  .modal-form-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .modal-form-fields .full {
+    grid-column: 1 / -1;
+  }
+
+  .modal-success {
+    text-align: center;
+    padding: 40px 20px;
+    display: none;
+  }
+
+  .modal-success h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 16px 0 8px;
+  }
+
+  .modal-success p {
+    color: var(--mid-grey);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--black);
+    padding: 70px 5% 40px;
+    color: rgba(255,255,255,0.5);
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+  }
+
+  .footer-logo .logo-shine { font-size: 1.5rem; color: #ffffff; }
+  .footer-logo .logo-online { font-size: 0.55rem; color: var(--gold); display: flex; justify-content: space-between; letter-spacing: normal; }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 16px;
+    line-height: 1.7;
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    border-top: 1px solid #1a1a1a;
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 0.85rem;
+  }
+
+  /* ─── DARK SECTION VARIANT ─── */
+  .section-dark {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .section-dark .section-title { color: var(--white); }
+  .section-dark .section-body { color: rgba(255,255,255,0.6); }
+
+  .section-dark .step-card {
+    background: #111;
+    border-color: #222;
+    color: var(--white);
+  }
+
+  .section-dark .step-card p { color: rgba(255,255,255,0.55); }
+
+  /* ─── BREADCRUMB ─── */
+  .breadcrumb {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+
+  .breadcrumb span {
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb span:hover { color: var(--gold); }
+
+  /* ─── HIGHLIGHT LIST ─── */
+  .highlight-list {
+    list-style: none;
+    margin-top: 20px;
+  }
+
+  .highlight-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+  }
+
+  .highlight-list li::before {
+    content: '→';
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .section-dark .highlight-list li { color: rgba(255,255,255,0.65); }
+
+  /* ─── CENTERED TEXT ─── */
+  .text-center { text-align: center; }
+  .mx-auto { max-width: 720px; margin-left: auto; margin-right: auto; }
+
+  /* ─── MOBILE HAMBURGER (simple) ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--black);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+    padding: 20px 5%;
+  }
+
+  .mobile-menu.open { display: block; }
+
+  .mobile-menu a {
+    display: block;
+    padding: 12px 0;
+    font-size: 1rem;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .split { grid-template-columns: 1fr; gap: 40px; }
+    .split.reverse { direction: ltr; }
+    .split-visual { height: 280px; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .value-grid { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .modal-form-fields { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .modal { padding: 32px 24px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav>
+  <!-- Logo -->
+  <a class="logo" onclick="showPage('home')">
+    <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="navSunGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#FF4500"/>
+          <stop offset="40%"  stop-color="#F5A623"/>
+          <stop offset="100%" stop-color="#FFD700"/>
+        </linearGradient>
+        <linearGradient id="navHorizGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#F5A623" stop-opacity="0"/>
+          <stop offset="30%"  stop-color="#F5A623"/>
+          <stop offset="70%"  stop-color="#FFD700"/>
+          <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- Horizon line -->
+      <line x1="2" y1="30" x2="46" y2="30" stroke="url(#navHorizGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      <!-- Outer arc ring (r=14) -->
+      <path d="M 10 30 A 14 14 0 0 1 38 30" stroke="url(#navSunGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <!-- Inner filled sun (r=9) -->
+      <path d="M 15 30 A 9 9 0 0 1 33 30" fill="url(#navSunGrad)"/>
+      <!-- 5 evenly spaced rays at -80°,-40°,0°,+40°,+80° from vertical -->
+      <!-- Each starts 2.5px beyond outer arc (r=16.5) and runs 6px (to r=22.5) -->
+      <line x1="7.75"  y1="27.13" x2="1.84"  y2="26.09" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+      <line x1="13.39" y1="17.36" x2="9.54"  y2="12.76" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+      <line x1="24.00" y1="13.50" x2="24.00" y2="7.50"  stroke="#FFD700" stroke-width="2"   stroke-linecap="round"/>
+      <line x1="34.61" y1="17.36" x2="38.46" y2="12.76" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+      <line x1="40.25" y1="27.13" x2="46.16" y2="26.09" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-shine">SHINE</span>
+      <span class="logo-online"><span>O</span><span>N</span><span>L</span><span>I</span><span>N</span><span>E</span></span>
+      <span class="logo-line"></span>
+    </div>
+  </a>
+
+  <!-- Links -->
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li class="nav-dropdown" id="servicesDropdown">
+      <a onclick="toggleDropdown(event)">Services</a>
+      <div class="dropdown-menu" id="servicesMenu">
+        <a onclick="navTo('ai-seo')">🤖 AI SEO</a>
+        <a onclick="navTo('ai-automation')">⚡ AI Automation</a>
+        <a onclick="navTo('social-media')">📱 Social Media</a>
+        <a onclick="navTo('seo')">🔍 SEO</a>
+        <a onclick="navTo('ppc')">📈 PPC Advertising</a>
+        <a onclick="navTo('web-design')">💻 Web Design</a>
+        <a onclick="navTo('graphic-design')">🎨 Graphic Design</a>
+      </div>
+    </li>
+    <li><a onclick="showPage('about')">About</a></li>
+    <li><a onclick="showPage('contact')">Contact</a></li>
+    <li>
+      <div class="nav-phone"><a href="tel:02393190121">02393 190 121</a></div>
+    </li>
+    <li><a class="nav-cta" onclick="openModal()">Get Started</a></li>
+  </ul>
+
+  <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');closeMobile()">Home</a>
+  <a onclick="showPage('ai-seo');closeMobile()">🤖 AI SEO</a>
+  <a onclick="showPage('ai-automation');closeMobile()">⚡ AI Automation</a>
+  <a onclick="showPage('seo');closeMobile()">🔍 SEO</a>
+  <a onclick="showPage('ppc');closeMobile()">📈 PPC Advertising</a>
+  <a onclick="showPage('web-design');closeMobile()">💻 Web Design</a>
+  <a onclick="showPage('graphic-design');closeMobile()">🎨 Graphic Design</a>
+  <a onclick="showPage('about');closeMobile()">About</a>
+  <a onclick="showPage('contact');closeMobile()">Contact</a>
+  <a href="tel:02393190121" style="color:#F5A623;font-weight:700">📞 02393 190 121</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ AI & Digital Marketing Experts</div>
+      <h1>AI Isn't Going To Destroy<br>Your Business —<br>But If Your Competitors<br>Use It Properly,<br><span>They Might.</span></h1>
+      <p class="hero-sub">AI optimisation is going to cost some businesses thousands, and make others tens of thousands in profit. We can make sure you come out on the right side of the equation.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="openModal()">Get Started</button>
+        <button class="btn-secondary" onclick="showPage('about')">About Us</button>
+      </div>
+    </div>
+    <div class="hero-phone-strip">
+      <span>Call us directly →</span>
+      <a href="tel:02393190121">02393 190 121</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item">SEO <span>✦</span></div>
+      <div class="marquee-item">AI SEO <span>✦</span></div>
+      <div class="marquee-item">AI Automation <span>✦</span></div>
+      <div class="marquee-item">PPC Advertising <span>✦</span></div>
+      <div class="marquee-item">Web Design <span>✦</span></div>
+      <div class="marquee-item">Graphic Design <span>✦</span></div>
+      <div class="marquee-item">Lead Generation <span>✦</span></div>
+      <div class="marquee-item">Growth Strategies <span>✦</span></div>
+      <!-- duplicate for infinite -->
+      <div class="marquee-item">SEO <span>✦</span></div>
+      <div class="marquee-item">AI SEO <span>✦</span></div>
+      <div class="marquee-item">AI Automation <span>✦</span></div>
+      <div class="marquee-item">PPC Advertising <span>✦</span></div>
+      <div class="marquee-item">Web Design <span>✦</span></div>
+      <div class="marquee-item">Graphic Design <span>✦</span></div>
+      <div class="marquee-item">Lead Generation <span>✦</span></div>
+      <div class="marquee-item">Growth Strategies <span>✦</span></div>
+    </div>
+  </div>
+
+  <!-- WHO WE HELP -->
+  <section style="padding: 100px 5%;">
+    <div class="split" style="max-width:1200px;margin:0 auto;">
+      <div>
+        <span class="section-label">Why Shine Online</span>
+        <h2 class="section-title">AI is about to affect every business - are you ready?</h2>
+        <p class="section-body">Being found on Google is no longer enough. AI ‘Answer-Based’ algorithms use different parameters to traditional browser searches. If you are invisible to AI you are missed in over a third of all customer searches. Next year it will be over half! We'll set you up with tools to guarantee your business is found by AI first.</p>
+        <ul class="highlight-list" style="margin-top:24px;">
+          <li>Proven AI search & marketing frameworks</li>
+          <li>AI-driven decision support</li>
+          <li>Automation that removes friction from sales and service</li>
+          <li>Conversion-focused execution</li>
+        </ul>
+        <div style="margin-top:32px;">
+          <button class="btn-primary" onclick="openModal()">Free AI Health Check</button>
+        </div>
+      </div>
+      <div class="split-visual">
+        <img class="split-visual-img" id="imgWhySO" src="" alt="Why Shine Online" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="visual-block visual-gold">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">🚀</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">3×</div>
+            <div class="vis-stat-label">Average ROI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES OVERVIEW -->
+  <section style="background:var(--off-white); padding:100px 5%;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="text-center">
+        <span class="section-label">Our Services</span>
+        <h2 class="section-title mx-auto">Everything your engineering business needs to grow online.</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" onclick="showPage('ai-seo')">
+          <div class="service-emoji">🤖</div>
+          <h3>AI SEO</h3>
+          <p>Appear in AI-powered search results and answer engines — the new frontier of digital visibility.</p>
+          <div class="service-arrow">→</div>
+        </div>
+        <div class="service-card" onclick="showPage('seo')">
+          <div class="service-emoji">🔍</div>
+          <h3>Search Engine Optimisation</h3>
+          <p>Rank higher on Google and put your business in front of customers actively searching for what you offer.</p>
+          <div class="service-arrow">→</div>
+        </div>
+        <div class="service-card" onclick="showPage('ai-automation')">
+          <div class="service-emoji">⚡</div>
+          <h3>AI Automation</h3>
+          <p>Intelligent systems that handle calls, leads, follow-ups, and scheduling — 24/7, without extra staff.</p>
+          <div class="service-arrow">→</div>
+        </div>
+        <div class="service-card" onclick="showPage('social-media')">
+          <div class="service-emoji">📱</div>
+          <h3>Social Media</h3>
+          <p>Weekly content creation and posting across LinkedIn, Facebook, and Instagram — keeping your business active, visible, and worth contacting.</p>
+          <div class="service-arrow">→</div>
+        </div>
+        <div class="service-card" onclick="showPage('web-design')">
+          <div class="service-emoji">💻</div>
+          <h3>Web Design</h3>
+          <p>Conversion-focused websites that look stunning, load fast, and turn visitors into paying customers.</p>
+          <div class="service-arrow">→</div>
+        </div>
+        <div class="service-card" onclick="showPage('ppc')">
+          <div class="service-emoji">📈</div>
+          <h3>PPC Advertising</h3>
+          <p>Google Ads campaigns built to convert — reach customers who are ready to buy, right now.</p>
+          <div class="service-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EFFECTIVE MARKETING SPLIT -->
+  <section style="padding:100px 5%;">
+    <div class="split" style="max-width:1200px;margin:0 auto;">
+      <div>
+        <span class="section-label">The Investment Case</span>
+        <h2 class="section-title">Effective marketing is one of the most profitable investments you can make.</h2>
+        <p class="section-body">When you partner with Shine Online, you're not just hiring an agency — you're gaining access to a full arsenal of proven AI digital marketing frameworks, AI-driven tools, and automation systems designed to generate real, measurable results for your business.</p>
+        <div style="margin-top:32px;">
+          <button class="btn-primary" onclick="openModal()">Let's Talk</button>
+        </div>
+      </div>
+      <div class="split-visual">
+        <img class="split-visual-img" id="imgInvestment" src="" alt="The Investment Case" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="visual-block visual-abstract">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">💰</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">200%</div>
+            <div class="vis-stat-label">Avg PPC ROI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-STEP PROCESS -->
+  <section class="steps-section">
+    <div style="max-width:1200px;margin:0 auto;text-align:center;">
+      <span class="section-label">Our Process</span>
+      <h2 class="section-title mx-auto">Our 4-Step Process — Specific to Your Business.</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Audit Your Online Presence</h3>
+        <p>We evaluate your website, traffic, ads, and customer journey to identify immediate opportunities.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Craft Your Strategy</h3>
+        <p>We design a custom plan using proven marketing systems and AI-powered workflows tailored to your goals.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Activate Your Campaign</h3>
+        <p>Our team launches fast — ads, websites, automation, and tracking — so momentum builds quickly.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3>Maximise Growth</h3>
+        <p>We optimise continuously, improve performance, and scale what works while automation handles the rest.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPLIT: AI SECTION -->
+  <section style="padding:100px 5%;">
+    <div class="split reverse" style="max-width:1200px;margin:0 auto;">
+      <div class="split-visual">
+        <img class="split-visual-img" id="imgAIAuto" src="" alt="AI Automation" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="visual-block visual-dark">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">⚡</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">24/7</div>
+            <div class="vis-stat-label">AI Always On</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">AI Automation</span>
+        <h2 class="section-title">Where traditional marketing ends, AI begins.</h2>
+        <p class="section-body">Most agencies stop at traffic. We connect your marketing to real AI systems that handle what happens after the click — where most businesses actually lose money.</p>
+        <ul class="highlight-list" style="margin-top:24px;">
+          <li>Leads answered instantly, around the clock</li>
+          <li>Calls never missed — AI voice receptionist</li>
+          <li>Follow-ups happen automatically</li>
+          <li>Revenue becomes more predictable</li>
+        </ul>
+        <div style="margin-top:32px;">
+          <button class="btn-primary" onclick="showPage('ai-automation')">Explore AI Solutions</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DARK CTA -->
+  <div class="cta-band">
+    <h2>Ready to Shine Online?</h2>
+    <p>Speak to us today — no obligation, no jargon. Just a straight conversation about your business.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="openModal()">Get Started Now</button>
+      <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo logo" onclick="showPage('home')">
+          <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+              <defs>
+                <linearGradient id="ftSunGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%"   stop-color="#FF4500"/>
+                  <stop offset="40%"  stop-color="#F5A623"/>
+                  <stop offset="100%" stop-color="#FFE566"/>
+                </linearGradient>
+                <linearGradient id="ftHorizGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%"   stop-color="#F5A623" stop-opacity="0"/>
+                  <stop offset="30%"  stop-color="#F5A623"/>
+                  <stop offset="70%"  stop-color="#FFD700"/>
+                  <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <line x1="2" y1="30" x2="46" y2="30" stroke="url(#ftHorizGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+              <path d="M 10 30 A 14 14 0 0 1 38 30" stroke="url(#ftSunGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.65"/>
+              <path d="M 15 30 A 9 9 0 0 1 33 30" fill="url(#ftSunGrad)"/>
+              <line x1="7.75"  y1="27.13" x2="1.84"  y2="26.09" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+              <line x1="13.39" y1="17.36" x2="9.54"  y2="12.76" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+              <line x1="24.00" y1="13.50" x2="24.00" y2="7.50"  stroke="#FFE566" stroke-width="2"   stroke-linecap="round"/>
+              <line x1="34.61" y1="17.36" x2="38.46" y2="12.76" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+              <line x1="40.25" y1="27.13" x2="46.16" y2="26.09" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+            </svg>
+          <div class="logo-text">
+            <span class="logo-shine" style="font-size:1.5rem">SHINE</span>
+            <span class="logo-online" style="font-size:0.55rem"><span>O</span><span>N</span><span>L</span><span>I</span><span>N</span><span>E</span></span>
+            <span class="logo-line"></span>
+          </div>
+        </div>
+        <p class="footer-tagline"></p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a onclick="showPage('seo')">SEO</a>
+        <a onclick="showPage('ai-seo')">AI SEO</a>
+        <a onclick="showPage('ai-automation')">AI Automation</a>
+        <a onclick="showPage('ppc')">PPC Advertising</a>
+        <a onclick="showPage('web-design')">Web Design</a>
+        <a onclick="showPage('graphic-design')">Graphic Design</a>
+        <a onclick="showPage('social-media')">Social Media</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('contact')">Contact</a>
+        <a onclick="openModal()">Get Started<</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:02393190121">02393 190 121</a>
+        <a style="pointer-events:none">shineonline.ai</a>
+        <a style="pointer-events:none;margin-top:16px;line-height:1.6">Portsmouth, PO5 1LH</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Shine Online. All rights reserved.</span>
+      <span>shineonline.ai</span>
+    </div>
+  </footer>
+
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: SEO
+═══════════════════════════════════════ -->
+<div id="page-seo" class="page">
+  <div class="service-hero">
+    <div class="service-hero-content">
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span> / <span onclick="showPage('home')">Services</span> / SEO</div>
+      <span class="section-label">Search Engine Optimisation</span>
+      <h1>SEO Services That Grow Your Business</h1>
+      <p>Turn clicks into paying customers. We specialise in boosting your rankings on search engines and getting your business in front of customers who are already looking for you.</p>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="openModal()">Get a Free Audit</button>
+        <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding:100px 5%;">
+    <div class="split" style="max-width:1200px;margin:0 auto;">
+      <div>
+        <span class="section-label">Why SEO Matters</span>
+        <h2 class="section-title">Organic search is a key component of your business's sales funnel.</h2>
+        <p class="section-body">The best way to grow your business is to increase the number of sales and clients you have. For that to happen, you need to be as visible as possible in search results — so that potential customers find you first, not your competitors. Our strategies are always in line with Google's latest algorithm updates, helping your website rank for the most profitable search terms related to your services.</p>
+      </div>
+      <div class="split-visual">
+        <img class="split-visual-img" id="imgSEO" src="" alt="SEO" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="visual-block visual-dark">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">🔍</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">#1</div>
+            <div class="vis-stat-label">Page One Google</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--off-white);padding:100px 5%;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <span class="section-label">Our Approach</span>
+      <h2 class="section-title">How We Approach Every Campaign</h2>
+      <div class="process-list" style="max-width:100%;margin-top:48px;">
+        <div class="process-item">
+          <div class="process-num">01</div>
+          <div>
+            <h3>Initial Website Assessment</h3>
+            <p>Every campaign begins with a comprehensive audit of your website and online presence. We evaluate site structure, current keyword rankings, backlink profile, and local visibility — forming the foundation of a tailored SEO roadmap aligned to your business goals.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">02</div>
+          <div>
+            <h3>Technical SEO Optimisation</h3>
+            <p>Before anything else, we ensure your website is technically sound. We address site speed, mobile-friendliness, crawlability, indexation, and structured data — building a solid foundation that supports all future SEO efforts.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">03</div>
+          <div>
+            <h3>On-Page SEO Strategy</h3>
+            <p>We refine your website content and metadata for relevant keywords — optimising title tags, headers, URLs, image alt text, and internal linking, so your content clearly communicates your value to both users and search engines.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">04</div>
+          <div>
+            <h3>Off-Page SEO & Authority Building</h3>
+            <p>We execute a targeted off-page SEO strategy including earning high-quality backlinks, optimising your Google Business Profile, and securing local citations — boosting your credibility and pushing rankings higher.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">05</div>
+          <div>
+            <h3>Reporting & Ongoing Analysis</h3>
+            <p>Transparency and data-driven decisions are key. We provide detailed reports tracking keyword rankings, traffic, leads, and technical performance — with actionable insights to keep your SEO campaign moving forward.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Ready to reach page one?</h2>
+    <p>Let's build an SEO strategy tailored to your business — and your customers.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="openModal()">Get Started</button>
+      <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <footer style="background:var(--black);padding:40px 5%;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+    <a onclick="showPage('home')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Shine Online</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Shine Online
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: AI SEO
+═══════════════════════════════════════ -->
+<div id="page-ai-seo" class="page">
+  <div class="service-hero">
+    <div class="service-hero-content">
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span> / Services / AI SEO</div>
+      <span class="section-label">Generative & Answer Engine Optimisation</span>
+      <h1>AI SEO — Get Found Where AI Searches.</h1>
+      <p>Shine Online is an early expert in GEO and AEO. We help businesses appear in AI-powered search results and gain visibility in AIO-driven answers — the new frontier of digital search.</p>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="openModal()">Get AI Visibility</button>
+        <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding:100px 5%;">
+    <div class="split reverse" style="max-width:1200px;margin:0 auto;">
+      <div class="split-visual">
+        <img class="split-visual-img" id="imgAISEO" src="" alt="AI SEO" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="visual-block visual-gold">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">🤖</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">AIO</div>
+            <div class="vis-stat-label">AI Optimised</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">What is AI SEO?</span>
+        <h2 class="section-title">Traditional SEO isn't enough anymore.</h2>
+        <p class="section-body">Search engines like Google now use AI to provide direct answers, summaries, and recommendations. If your business isn't optimised for AI, you risk losing visibility in these new results. AI SEO ensures your business is mentioned in AI-generated overviews and local search panels — driving targeted visibility, building trust, and bringing customers directly to your site.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--off-white);padding:100px 5%;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <span class="section-label">Our Strategy</span>
+      <h2 class="section-title">AI Search Strategy & Execution</h2>
+      <div class="feature-grid" style="margin-top:48px;">
+        <div class="feature-card">
+          <div class="feature-icon">🔎</div>
+          <h3>Auditing & Analysis for AI SEO</h3>
+          <p>We examine AI mentions, identify content gaps, check technical issues, and review competitors to uncover opportunities to improve your visibility.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📡</div>
+          <h3>Visibility & Optimisation for AI</h3>
+          <p>We map topics, analyse prompts, cluster keywords, optimise internal links, and update schema to boost AI discoverability and local search relevance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💼</div>
+          <h3>Conversion Optimisation</h3>
+          <p>We design pages to convert AI-driven traffic into leads, calls, or sales through clear page structure and optimised user journeys.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Testing & Reporting</h3>
+          <p>We track AI mentions, traffic patterns, and ranking performance. Regular testing and analysis refine strategies and maximise ROI.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏢</div>
+          <h3>Entity Optimisation for AIO</h3>
+          <p>We establish your brand as a trusted entity across web sources. Structured data, citations, and consistent branding reinforce authority in AI systems.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Content Clarity & Structuring</h3>
+          <p>Clear content improves AI comprehension. We structure headings, use concise answers, and implement FAQ schema — making your pages more likely to feature in AI-generated summaries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2></h2>
+    <p></p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="openModal()">Contact Us</button>
+      <button class="btn-secondary" onclick="showPage('contact')">Get in Touch</button>
+    </div>
+  </div>
+
+  <footer style="background:var(--black);padding:40px 5%;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+    <a onclick="showPage('home')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Shine Online</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Shine Online
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: AI AUTOMATION
+═══════════════════════════════════════ -->
+<div id="page-ai-automation" class="page">
+  <div class="service-hero">
+    <div class="service-hero-content">
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span> / Services / AI Automation</div>
+      <span class="section-label">AI Automation Solutions</span>
+      <h1>AI That Runs Parts of Your Business.</h1>
+      <p>AI-powered systems that handle calls, messages, scheduling, sales follow-up, customer chat, and more — so your business runs smoothly, without hiring extra staff.</p>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="openModal()">Get Started Now</button>
+        <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding:100px 5%;">
+    <div class="split" style="max-width:1200px;margin:0 auto;">
+      <div>
+        <span class="section-label">Our Philosophy</span>
+        <h2 class="section-title">AI isn't about replacing people. It's about removing friction.</h2>
+        <p class="section-body">Businesses lose revenue every day from missed calls, delayed replies, no-shows, and inconsistent follow-up. Staff get overwhelmed. Leads go cold. Customers are left waiting. Our AI solutions fix this by creating intelligent automation systems that handle communication and routine workflows automatically — across phone, SMS, email, calendars, and booking systems.</p>
+        <ul class="highlight-list" style="margin-top:24px;">
+          <li>Respond instantly to every enquiry</li>
+          <li>Follow your exact business rules</li>
+          <li>Log every interaction automatically</li>
+          <li>Hand off to staff only when needed</li>
+        </ul>
+      </div>
+      <div class="split-visual">
+        <img class="split-visual-img" id="imgAIAutoPage" src="" alt="AI Automation" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="visual-block visual-dark">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">⚡</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">24/7</div>
+            <div class="vis-stat-label">Never Off</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--off-white);padding:100px 5%;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="text-center">
+        <span class="section-label">Our AI Tools</span>
+        <h2 class="section-title mx-auto">AI Solutions Businesses Can Actually Use</h2>
+      </div>
+      <div class="feature-grid" style="margin-top:48px;">
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>The AI Growth Engine</h3>
+          <p>Your 24/7 sales and follow-up employee. Responds to new leads instantly, answers common questions, follows up automatically, and moves qualified prospects into booked appointments — without adding staff.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📞</div>
+          <h3>AI Voice Agent</h3>
+          <p>Your 24/7 AI receptionist. Answers inbound calls instantly — day, night, weekends, holidays. Handles common questions, qualifies callers, routes or books high-intent opportunities.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>AI Chat Widget</h3>
+          <p>Your website conversion employee. Engages visitors the moment they land, answers questions, captures lead information in real time, and guides visitors toward the next step.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>AI Slack Genius</h3>
+          <p>An AI agent inside Slack that sifts through all your company data and documentation — providing instant, perfect recall to answer employee questions in seconds.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>AI Financial Analyst</h3>
+          <p>Daily detailed financial insights — not just bookkeeping. Shows how to make and save more money, creating dashboards and identifying areas that need attention.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Custom Task GPT</h3>
+          <p>One AI, one job, done right. Built to handle one specific task inside your business — perfectly, consistently, and fast.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏢</div>
+          <h3>AI Business Command Centre</h3>
+          <p>Connect all your company applications — HR, Finance, IT, Sales, Marketing — in one control panel. View everything at once and implement changes on a company-wide scale.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>AI Training & Process Streamliner</h3>
+          <p>Take all your internal documents and manuals and create slick internal processes that solve your employee problems — faster onboarding, consistent standards, less confusion.</p>
+        </div>
+        <div class="feature-card" style="background:var(--black);color:var(--white);border-color:transparent;">
+          <div class="feature-icon">🤝</div>
+          <h3 style="color:var(--white)">AI Consulting</h3>
+          <p style="color:rgba(255,255,255,0.6)">Every project starts with AI consulting — not tools. We map your customer journey, internal processes, and hand-off rules before we build anything.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Ready to automate your business?</h2>
+    <p>Let's build AI systems that work while you sleep.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="openModal()">Get Started</button>
+      <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <footer style="background:var(--black);padding:40px 5%;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+    <a onclick="showPage('home')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Shine Online</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Shine Online
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: PPC
+═══════════════════════════════════════ -->
+<div id="page-ppc" class="page">
+  <div class="service-hero">
+    <div class="service-hero-content">
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span> / Services / PPC</div>
+      <span class="section-label">Pay Per Click Advertising</span>
+      <h1>PPC Advertising That Drives Real Results.</h1>
+      <p>Google Ads and paid search management for results-driven businesses. Reach the right audience, at the right time, with the right message — generating more leads, bookings, and sales, faster.</p>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="openModal()">Start Your Campaign</button>
+        <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding:100px 5%;">
+    <div class="split reverse" style="max-width:1200px;margin:0 auto;">
+      <div class="split-visual">
+        <img class="split-visual-img" id="imgPPC" src="" alt="PPC Advertising" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="visual-block visual-gold">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">📈</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">200%</div>
+            <div class="vis-stat-label">Average PPC ROI</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Why PPC</span>
+        <h2 class="section-title">If you plan on making money this year — PPC is non-negotiable.</h2>
+        <p class="section-body">PPC advertising is predictable, measurable, and immediate. 90% of online users see Google Ads, and Google PPC delivers an average ROI of 200%. Yet less than half of all businesses run paid ads — leaving significant room for those who act. With PPC, your ads reach customers searching for your service today.</p>
+        <ul class="highlight-list" style="margin-top:24px;">
+          <li>Reach customers who are ready to buy, right now</li>
+          <li>Geo-targeted campaigns for your exact area</li>
+          <li>Every pound tracked and optimised</li>
+          <li>Results often visible within weeks</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--off-white);padding:100px 5%;">
+    <div style="max-width:900px;margin:0 auto;text-align:center;">
+      <span class="section-label">Our Results</span>
+      <h2 class="section-title mx-auto">Can advertising like this drive immediate results? Yes. When done right.</h2>
+      <p style="color:#555;font-size:1rem;line-height:1.8;margin-top:20px;">Our PPC campaigns help you show up when your audience is ready to buy. Our team uses real data and proven systems to drive quick, measurable growth — increased calls, bookings, and enquiries, often within weeks of launching.</p>
+    </div>
+    <div class="steps-grid" style="margin-top:60px;">
+      <div class="step-card">
+        <div class="step-num">→</div>
+        <h3>Strategy & Research</h3>
+        <p>Deep keyword research, competitor analysis, and audience targeting before we spend a single penny of your budget.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">→</div>
+        <h3>Campaign Build</h3>
+        <p>Custom ads, landing pages, and conversion tracking — built to convert from day one.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">→</div>
+        <h3>Launch & Monitor</h3>
+        <p>We launch fast and monitor in real time — adjusting bids, copy, and targeting to maximise every pound spent.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">→</div>
+        <h3>Optimise & Scale</h3>
+        <p>What works gets scaled. What doesn't gets cut. Your budget is always working its hardest.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Ready to reach customers today?</h2>
+    <p>Let's build a campaign that delivers real results.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="openModal()">Get Started</button>
+      <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <footer style="background:var(--black);padding:40px 5%;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+    <a onclick="showPage('home')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Shine Online</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Shine Online
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: WEB DESIGN
+═══════════════════════════════════════ -->
+<div id="page-web-design" class="page">
+  <div class="service-hero">
+    <div class="service-hero-content">
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span> / Services / Web Design</div>
+      <span class="section-label">Web Design</span>
+      <h1>Websites That Look Beautiful & Convert.</h1>
+      <p>A powerful online presence begins with a well-designed website. We create custom websites that help businesses build trust, attract customers, and stand out in a competitive digital landscape.</p>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="openModal()">Get a Quote</button>
+        <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding:100px 5%;">
+    <div class="split" style="max-width:1200px;margin:0 auto;">
+      <div>
+        <span class="section-label">First Impressions</span>
+        <h2 class="section-title">Your website is your first impression. Make it count.</h2>
+        <p class="section-body">We combine creative design with marketing strategy — every website we build is designed to convert visitors, rank well on search engines, and reflect the unique personality of your business. We listen to your goals, create a layout that fits your audience, and deliver a website that looks professional and performs effectively.</p>
+      </div>
+      <div class="split-visual">
+        <img class="split-visual-img" id="imgWeb" src="" alt="Web Design" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="visual-block visual-dark">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">💻</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">100%</div>
+            <div class="vis-stat-label">Mobile Ready</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--off-white);padding:100px 5%;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <span class="section-label">What's Included</span>
+      <h2 class="section-title">What Our Web Design Services Include</h2>
+      <div class="value-grid" style="margin-top:48px;">
+        <div class="value-item">
+          <div class="value-icon">🎨</div>
+          <h3>Custom Logo & Brand Identity</h3>
+          <p>We design custom logos using the right colours, typography, and visuals to help your business stand out and create instant recognition across all your marketing materials.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🖥️</div>
+          <h3>Unique Website Layouts</h3>
+          <p>We design websites that look modern and feel intuitive — guiding users toward action. From simple business pages to complex service websites, we turn ideas into digital experiences that work.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">📱</div>
+          <h3>Mobile-Responsive Design</h3>
+          <p>More than half of all website traffic now comes from mobile devices. Every website we build adapts seamlessly to phones, tablets, and desktops — loading fast and looking beautiful everywhere.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🔍</div>
+          <h3>Web Design with SEO Built In</h3>
+          <p>A great website should be easy to find. Our design process includes SEO best practices from the very beginning — clean architecture, fast load times, and search-friendly structure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Ready to launch your new website?</h2>
+    <p>Let's create something your customers won't forget.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="openModal()">Get Started Today</button>
+      <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <footer style="background:var(--black);padding:40px 5%;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+    <a onclick="showPage('home')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Shine Online</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Shine Online
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: GRAPHIC DESIGN
+═══════════════════════════════════════ -->
+<div id="page-graphic-design" class="page">
+  <div class="service-hero">
+    <div class="service-hero-content">
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span> / Services / Graphic Design</div>
+      <span class="section-label">Graphic Design</span>
+      <h1>Graphic Design That Works Like Magic.</h1>
+      <p>Eye-catching visuals that grab attention, build trust, and compel your audience to take action. Your brand deserves to look as good as the service it delivers.</p>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="openModal()">Get Started</button>
+        <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding:100px 5%;">
+    <div class="split reverse" style="max-width:1200px;margin:0 auto;">
+      <div class="split-visual">
+        <img class="split-visual-img" id="imgGfx" src="" alt="Graphic Design" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="visual-block visual-abstract">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">🎨</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">✦</div>
+            <div class="vis-stat-label">Brand First</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Does Your Business Need It?</span>
+        <h2 class="section-title">If you want your business to make money — yes, you do.</h2>
+        <p class="section-body">We've all seen a company logo that looked less than impressive. This almost always happens because that business didn't invest in expert design. When your business invests in professional graphic design, you signal to the world: "My brand is worth your time." Our services help your business stand out with custom assets that get real results.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--off-white);padding:100px 5%;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <span class="section-label">What We Create</span>
+      <h2 class="section-title">What's Included With Your Graphic Design</h2>
+      <div class="steps-grid" style="margin-top:48px;">
+        <div class="step-card">
+          <div style="font-size:2rem;margin-bottom:16px;">👁️</div>
+          <h3>Get Recognised</h3>
+          <p>Custom-made graphic design assets for your website, social media, email blasts, and more — helping you get noticed in a crowded marketplace.</p>
+        </div>
+        <div class="step-card">
+          <div style="font-size:2rem;margin-bottom:16px;">💰</div>
+          <h3>Earn More</h3>
+          <p>We strategically craft assets that compel your target audience to take action — when customers understand your brand, they're more likely to buy.</p>
+        </div>
+        <div class="step-card">
+          <div style="font-size:2rem;margin-bottom:16px;">🏆</div>
+          <h3>Establish Your Identity</h3>
+          <p>We define your brand identity and establish your business as the authority — highlighting exclusive selling points that set you apart from every competitor.</p>
+        </div>
+        <div class="step-card">
+          <div style="font-size:2rem;margin-bottom:16px;">📣</div>
+          <h3>Everything You Need</h3>
+          <p>Logos, brochures, social media graphics, vehicle livery, signage, advertising materials — complete design solutions for every touchpoint.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Ready for design that gets results?</h2>
+    <p>Let's create visuals that make your business impossible to ignore.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="openModal()">Get Started</button>
+      <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <footer style="background:var(--black);padding:40px 5%;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+    <a onclick="showPage('home')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Shine Online</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Shine Online
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: ABOUT
+═══════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div style="background:var(--black);padding:140px 5% 80px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle, rgba(245,166,35,0.12), transparent 70%);"></div>
+    <div style="max-width:800px;position:relative;">
+      <span class="section-label">About Shine Online</span>
+      <h1 style="font-size:clamp(2.5rem,5vw,4rem);font-weight:800;color:var(--white);letter-spacing:-2px;line-height:1.05;margin:16px 0 24px;">We make businesses <span style="color:var(--gold)">impossible to ignore.</span></h1>
+      <p style="font-size:1.1rem;color:rgba(255,255,255,0.65);line-height:1.8;max-width:620px;">Shine Online is a UK-based AI and digital marketing agency built for businesses that are serious about growth. We combine cutting-edge AI automation with proven marketing systems to deliver results that actually move the needle.</p>
+    </div>
+  </div>
+
+  <section style="padding:100px 5%;background:var(--off-white);">
+    <div class="about-grid">
+      <div class="about-visual">
+        <img class="about-visual-img" id="aboutPageImg" src="" alt="About Shine Online" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="about-vis-placeholder">
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%, rgba(245,166,35,0.15), transparent 60%);"></div>
+          <div class="about-vis-content">
+            <div class="about-vis-logo">SHINE</div>
+            <div class="about-vis-sub">Online</div>
+            <div style="margin-top:32px;font-size:3rem;">☀️</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Built for businesses that demand real results.</h2>
+        <p class="section-body" style="margin-bottom:20px;">Shine Online was created to solve a real problem: too many businesses are spending money on marketing that doesn't work, and missing out on the transformative potential of AI automation.</p>
+        <p class="section-body">We specialise in two distinct markets — established field service companies looking for smart retainer-based growth partnerships, and ambitious local businesses ready to take their first serious step online. Whether you're a commercial kitchen repair company turning over £2m per year, or a local roofer who just wants a website that actually brings in work — we understand your world and we know how to help.</p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-num">AI<span>+</span></div>
+            <div class="about-stat-label">Automation Specialists</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">6<span>+</span></div>
+            <div class="about-stat-label">Core Services</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">£2K</div>
+            <div class="about-stat-label">Entry-Level Websites</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">24/7</div>
+            <div class="about-stat-label">AI Systems Running</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:100px 5%;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="text-center">
+        <span class="section-label">Who We Work With</span>
+        <h2 class="section-title mx-auto">Two types of business. One mission: growth.</h2>
+      </div>
+      <div class="value-grid" style="margin-top:60px;">
+        <div class="value-item">
+          <div class="value-icon">🏭</div>
+          <h3>Field Service & Engineering Companies</h3>
+          <p>Coffee machine repair, commercial kitchen repair, automatic door repair, and similar businesses with turnovers of £1m–£5m. We help you build retainer-based marketing relationships covering SEO, AI SEO, social media, and AI automation — delivering sustained growth and operational efficiency.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🔨</div>
+          <h3>Local Owner-Operated Businesses</h3>
+          <p>Kitchen fitters, roofers, builders, coffee shops, restaurants — local businesses that need a serious online presence without the corporate price tag. From a high-quality one-page website to full SEO and social media management, we help you compete and win locally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Ready to grow with Shine Online?</h2>
+    <p>Let's have a conversation about your business and what's possible.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="openModal()">Get In Touch</button>
+      <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <footer style="background:var(--black);padding:40px 5%;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+    <a onclick="showPage('home')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Home</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Shine Online
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: CONTACT
+═══════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="contact-hero">
+    <div style="position:relative;max-width:700px;">
+      <span class="section-label">Contact Us</span>
+      <h1 style="font-size:clamp(2.4rem,5vw,4rem);font-weight:800;color:var(--white);letter-spacing:-2px;line-height:1.05;margin:16px 0 24px;">Let's have a <span style="color:var(--gold)">real conversation</span> about your business.</h1>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.6);line-height:1.8;">No jargon, no sales pressure. Just a straight conversation about where you are and where you want to be — and whether we're the right partner to help you get there.</p>
+    </div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2Get in touch/h2>
+      <p>We work with businesses across the UK — from local trades to established service companies. Reach out and tell us what you need.</p>
+
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <div class="contact-detail-text">
+          <strong>Phone</strong>
+          <a href="tel:02393190121">02393 190 121</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">🌐</div>
+        <div class="contact-detail-text">
+          <strong>Website</strong>
+          <span>shineonline.ai</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div class="contact-detail-text">
+          <strong>Based in</strong>
+          <span>Portsmouth, PO5 1LH</span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">⏰</div>
+        <div class="contact-detail-text">
+          <strong>Hours</strong>
+          <span>Mon–Fri 9am–6pm<br>AI systems available 24/7</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3 style="font-size:1.5rem;font-weight:800;margin-bottom:8px;">Send Us a Message</h3>
+      <p style="font-size:0.9rem;color:var(--mid-grey);margin-bottom:28px;">Fill in the form and we'll be in touch shortly.</p>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="John Smith">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="john@yourcompany.co.uk">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="01234 567890">
+      </div>
+      <div class="form-group">
+        <label>Business Name</label>
+        <input type="text" placeholder="Your Company Ltd">
+      </div>
+      <div class="form-group">
+        <label>How can we help?</label>
+        <textarea placeholder="Tell us a little about your business and what you're looking to achieve..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;" onclick="alert('Thank you! We will be in touch very soon.')">Send Message</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo logo" onclick="showPage('home')">
+          <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+              <defs>
+                <linearGradient id="ftSunGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%"   stop-color="#FF4500"/>
+                  <stop offset="40%"  stop-color="#F5A623"/>
+                  <stop offset="100%" stop-color="#FFE566"/>
+                </linearGradient>
+                <linearGradient id="ftHorizGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%"   stop-color="#F5A623" stop-opacity="0"/>
+                  <stop offset="30%"  stop-color="#F5A623"/>
+                  <stop offset="70%"  stop-color="#FFD700"/>
+                  <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <line x1="2" y1="30" x2="46" y2="30" stroke="url(#ftHorizGrad2)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+              <path d="M 10 30 A 14 14 0 0 1 38 30" stroke="url(#ftSunGrad2)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.65"/>
+              <path d="M 15 30 A 9 9 0 0 1 33 30" fill="url(#ftSunGrad2)"/>
+              <line x1="7.75"  y1="27.13" x2="1.84"  y2="26.09" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+              <line x1="13.39" y1="17.36" x2="9.54"  y2="12.76" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+              <line x1="24.00" y1="13.50" x2="24.00" y2="7.50"  stroke="#FFE566" stroke-width="2"   stroke-linecap="round"/>
+              <line x1="34.61" y1="17.36" x2="38.46" y2="12.76" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+              <line x1="40.25" y1="27.13" x2="46.16" y2="26.09" stroke="#F5A623" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+            </svg>
+          <div class="logo-text">
+            <span class="logo-shine" style="font-size:1.5rem">SHINE</span>
+            <span class="logo-online" style="font-size:0.55rem"><span>O</span><span>N</span><span>L</span><span>I</span><span>N</span><span>E</span></span>
+            <span class="logo-line"></span>
+          </div>
+        </div>
+        <p class="footer-tagline"></p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a onclick="showPage('seo')">SEO</a>
+        <a onclick="showPage('ai-seo')">AI SEO</a>
+        <a onclick="showPage('ai-automation')">AI Automation</a>
+        <a onclick="showPage('ppc')">PPC Advertising</a>
+        <a onclick="showPage('web-design')">Web Design</a>
+        <a onclick="showPage('graphic-design')">Graphic Design</a>
+        <a onclick="showPage('social-media')">Social Media</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('contact')">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:02393190121">02393 190 121</a>
+        <a style="pointer-events:none">shineonline.ai</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Shine Online. All rights reserved.</span>
+      <span>shineonline.ai</span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     LEAD GENERATION MODAL
+═══════════════════════════════════════ -->
+<div class="modal-overlay" id="leadModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <!-- Form content -->
+    <div id="modalForm">
+      <h2Let's Get Started/h2>
+      <p class="sub">Tell us a little about what you need — we'll be in touch to arrange a free, no-obligation conversation.</p>
+
+      <p style="font-size:0.85rem;font-weight:600;margin-bottom:12px;color:#333;">What best describes what you want help with right now?</p>
+      <div class="radio-group">
+        <label class="radio-option">
+          <input type="radio" name="helpType" value="ai-health"> I'd like a free AI health check for my business
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="helpType" value="ai-growth"> I'm interested in harnessing AI to grow my business
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="helpType" value="seo"> I want to rank higher on Google
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="helpType" value="social"> I'd like automated social media content
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="helpType" value="customers"> I want more customers, leads, or sales
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="helpType" value="website"> I need a new website
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="helpType" value="unsure"> I'm not sure — I need help with my digital marketing
+        </label>
+      </div>
+
+      <div class="modal-form-fields">
+        <div>
+          <label>First Name *</label>
+          <input type="text" id="mFirstName" placeholder="John" required>
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input type="text" id="mLastName" placeholder="Smith">
+        </div>
+        <div>
+          <label>Email Address *</label>
+          <input type="email" id="mEmail" placeholder="john@company.co.uk" required>
+        </div>
+        <div>
+          <label>Phone Number *</label>
+          <input type="tel" id="mPhone" placeholder="01234 567890" required>
+        </div>
+        <div class="full">
+          <label>Business Name</label>
+          <input type="text" id="mBusiness" placeholder="Your Company Ltd">
+        </div>
+      </div>
+
+      <button class="btn-primary" style="width:100%;margin-top:24px;" onclick="submitLead()">Send My Enquiry →</button>
+      <p style="font-size:0.78rem;color:var(--mid-grey);text-align:center;margin-top:12px;">We'll call you back — no spam, ever.</p>
+    </div>
+
+    <!-- Success message -->
+    <div class="modal-success" id="modalSuccess">
+      <div style="font-size:3rem;">✅</div>
+      <h3Enquiry Received!/h3>
+      <p>Thank you — we'll be in touch very soon to arrange a free conversation about your business. In the meantime, feel free to call us directly. <strong><a href="tel:02393190121" style="color:var(--gold)">02393 190 121</a></strong>.</p>
+      <button class="btn-primary" style="margin-top:24px;" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // ─── PAGE NAVIGATION ───
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    var page = document.getElementById('page-' + id);
+    if (page) {
+      page.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    closeDropdown();
+  }
+
+  // navTo is a clean alias used by dropdown items
+  function navTo(id) {
+    showPage(id);
+  }
+
+  // ─── DROPDOWN ───
+  function toggleDropdown(e) {
+    e.stopPropagation();
+    var dd = document.getElementById('servicesDropdown');
+    dd.classList.toggle('open');
+  }
+
+  function closeDropdown() {
+    var dd = document.getElementById('servicesDropdown');
+    if (dd) dd.classList.remove('open');
+  }
+
+  // Close dropdown when clicking anywhere outside it
+  document.addEventListener('click', function(e) {
+    var dd = document.getElementById('servicesDropdown');
+    if (dd && !dd.contains(e.target)) {
+      dd.classList.remove('open');
+    }
+  });
+
+  // ─── MOBILE MENU ───
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // ─── MODAL ───
+  function openModal() {
+    document.getElementById('leadModal').classList.add('open');
+    document.getElementById('modalForm').style.display = 'block';
+    document.getElementById('modalSuccess').style.display = 'none';
+    document.body.style.overflow = 'hidden';
+    closeDropdown();
+  }
+
+  function closeModal() {
+    document.getElementById('leadModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('leadModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function submitLead() {
+    var firstName = document.getElementById('mFirstName').value.trim();
+    var email = document.getElementById('mEmail').value.trim();
+    var phone = document.getElementById('mPhone').value.trim();
+    if (!firstName) { alert('Please enter your first name.'); return; }
+    if (!email) { alert('Please enter your email address.'); return; }
+    if (!phone) { alert('Please enter your phone number.'); return; }
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
+  }
+
+  // ─── RADIO OPTION HIGHLIGHT ───
+  document.querySelectorAll('.radio-option input[type="radio"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      document.querySelectorAll('.radio-option').forEach(function(opt) {
+        opt.style.borderColor = '';
+        opt.style.background = '';
+      });
+      if (this.checked) {
+        this.closest('.radio-option').style.borderColor = '#F5A623';
+        this.closest('.radio-option').style.background = 'rgba(245,166,35,0.06)';
+      }
+    });
+  });
+</script>
+
+
+
+<!-- ═══════════════════════════════════════
+     PAGE: SOCIAL MEDIA
+═══════════════════════════════════════ -->
+<div id="page-social-media" class="page">
+  <div class="service-hero">
+    <div class="service-hero-content">
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span> / <span onclick="showPage('home')">Services</span> / Social Media</div>
+      <span class="section-label">Social Media Management</span>
+      <h1>Social Media That<br>Makes Your Business<br><span>Look Alive.</span></h1>
+      <p>Your social media presence tells potential customers everything about your business before they ever pick up the phone. We manage your LinkedIn, Facebook, and Instagram — creating and posting content every week, so your business always looks active, professional, and worth contacting.</p>
+      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="openModal()">Get Started</button>
+        <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding:100px 5%;">
+    <div class="split" style="max-width:1200px;margin:0 auto;">
+      <div>
+        <span class="section-label">Why It Matters</span>
+        <h2 class="section-title">A business that hasn't posted in a year looks like a business that isn't trying.</h2>
+        <p class="section-body">When a potential customer finds your business — whether through a Google search, a recommendation, or an ad — the first thing most of them do is look you up on social media. What they find shapes their entire first impression. A profile with regular posts signals that your business is busy, current, and professional. A profile that hasn't been touched in 18 months signals the opposite.</p>
+        <p class="section-body" style="margin-top:16px;">You don't need to go viral. You don't need millions of followers. You just need to show up consistently — and that's exactly what we do for you.</p>
+        <ul class="highlight-list" style="margin-top:24px;">
+          <li>Businesses with active profiles receive significantly more enquiries</li>
+          <li>Regular posting builds trust before the first conversation</li>
+          <li>Consistent activity improves your visibility in platform search results</li>
+          <li>Looking busy makes you look successful — and success attracts success</li>
+        </ul>
+      </div>
+      <div class="split-visual">
+        <div class="visual-block visual-gold">
+          <div class="vis-circles"></div>
+          <div class="vis-icon">📱</div>
+          <div class="vis-stat">
+            <div class="vis-stat-num">52×</div>
+            <div class="vis-stat-label">Posts Per Year</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--off-white);padding:100px 5%;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <span class="section-label">What We Manage</span>
+      <h2 class="section-title" style="max-width:700px;">Three platforms. One weekly cadence. Zero effort on your part.</h2>
+      <p class="section-body" style="max-width:720px;margin-top:16px;">We handle your presence across the platforms that matter most for business credibility and local customer trust. Every post is created specifically for your business — not generic templates copied from a library.</p>
+      <div class="services-grid" style="margin-top:56px;">
+        <div class="service-card">
+          <div class="service-icon">💼</div>
+          <h3>LinkedIn</h3>
+          <p>Professional credibility, thought leadership, and B2B trust. We post updates, insights, and business news that position you as an authority in your sector — making you the obvious choice when someone needs what you offer.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📘</div>
+          <h3>Facebook</h3>
+          <p>The most widely used platform for local business discovery. We keep your page active with engaging posts that reach your local audience, showcase your work, and give customers a reason to recommend you to friends and family.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📸</div>
+          <h3>Instagram</h3>
+          <p>Visual proof that your business does what it says. We create polished, on-brand content that showcases your services, your team, and your results — turning your profile into a portfolio that sells.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✍️</div>
+          <h3>Content Creation</h3>
+          <p>Every caption, graphic, and post is written and designed for your specific business. No generic filler. No recycled content. Everything we produce is tailored to your brand voice, your services, and your audience.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📅</div>
+          <h3>Weekly Scheduling</h3>
+          <p>We plan and schedule posts in advance so your profiles are never left to go quiet. A consistent weekly posting schedule keeps your business front-of-mind with followers and signals activity to platform algorithms.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Monthly Reporting</h3>
+          <p>You'll receive a clear monthly summary showing reach, engagement, and follower growth across your profiles. No jargon — just a straightforward picture of how your social presence is building over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:100px 5%;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <span class="section-label">Our Process</span>
+      <h2 class="section-title">How We Get Started</h2>
+      <div class="process-list" style="max-width:100%;margin-top:48px;">
+        <div class="process-item">
+          <div class="process-num">01</div>
+          <div>
+            <h3>Profile Audit</h3>
+            <p>We review your existing social profiles, assess what's working and what isn't, identify any gaps or inconsistencies in branding, and establish a baseline so we can measure growth from day one.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">02</div>
+          <div>
+            <h3>Brand & Content Strategy</h3>
+            <p>We get to know your business, your tone of voice, and the customers you want to reach. From this we build a content strategy that reflects who you are and speaks directly to the people most likely to hire you.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">03</div>
+          <div>
+            <h3>Content Creation</h3>
+            <p>Our team creates the posts — copy, visuals, and formatting — tailored to each platform. Everything is produced in advance and checked for quality before it goes anywhere near your profiles.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">04</div>
+          <div>
+            <h3>Weekly Posting</h3>
+            <p>Posts go live on a consistent weekly schedule across LinkedIn, Facebook, and Instagram. Your profiles stay active and current — without you needing to think about it, write anything, or spend a single hour on it yourself.</p>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">05</div>
+          <div>
+            <h3>Review & Optimisation</h3>
+            <p>Each month we review what performed best, refine the content strategy accordingly, and share a clear report with you. Over time, your presence grows stronger, your engagement improves, and your business looks increasingly credible online.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Your competitors are posting. Are you?</h2>
+    <p>Let us handle your social media — so your business always looks active, professional, and worth contacting.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="openModal()">Get Started</button>
+      <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <footer style="background:var(--black);padding:40px 5%;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+    <a onclick="showPage('home')" style="color:var(--gold);text-decoration:none;cursor:pointer;">← Back to Shine Online</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Shine Online
+  </footer>
+</div>
+
+</body>
+</html>
