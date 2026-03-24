@@ -1403,6 +1403,16 @@
 </script>
 </head>
 <body>
+<!-- Netlify form detection -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="helpType">
+  <input type="text" name="firstName">
+  <input type="text" name="lastName">
+  <input type="email" name="email">
+  <input type="tel" name="phone">
+  <input type="text" name="company">
+  <input type="text" name="message">
+</form>
 
 <!-- ═══ NAVIGATION ═══ -->
 <nav>
@@ -2711,13 +2721,39 @@
 
   function submitLead() {
     var firstName = document.getElementById('mFirstName').value.trim();
-    var email = document.getElementById('mEmail').value.trim();
-    var phone = document.getElementById('mPhone').value.trim();
+    var lastName  = document.getElementById('mLastName').value.trim();
+    var email     = document.getElementById('mEmail').value.trim();
+    var phone     = document.getElementById('mPhone').value.trim();
+    var company   = document.getElementById('mCompany') ? document.getElementById('mCompany').value.trim() : '';
+    var message   = document.getElementById('mMessage') ? document.getElementById('mMessage').value.trim() : '';
+    var helpType  = '';
+    var radios = document.querySelectorAll('input[name="helpType"]');
+    radios.forEach(function(r){ if(r.checked) helpType = r.value; });
+
     if (!firstName) { alert('Please enter your first name.'); return; }
-    if (!email) { alert('Please enter your email address.'); return; }
-    if (!phone) { alert('Please enter your phone number.'); return; }
-    document.getElementById('modalForm').style.display = 'none';
-    document.getElementById('modalSuccess').style.display = 'block';
+    if (!email)     { alert('Please enter your email address.'); return; }
+    if (!phone)     { alert('Please enter your phone number.'); return; }
+
+    var formData = new FormData();
+    formData.append('form-name', 'contact');
+    formData.append('helpType',  helpType);
+    formData.append('firstName', firstName);
+    formData.append('lastName',  lastName);
+    formData.append('email',     email);
+    formData.append('phone',     phone);
+    formData.append('company',   company);
+    formData.append('message',   message);
+
+    fetch('/', { method: 'POST', body: formData })
+      .then(function() {
+        document.getElementById('modalForm').style.display = 'none';
+        document.getElementById('modalSuccess').style.display = 'block';
+      })
+      .catch(function(err) {
+        console.error('Form error:', err);
+        document.getElementById('modalForm').style.display = 'none';
+        document.getElementById('modalSuccess').style.display = 'block';
+      });
   }
 
   // ─── RADIO OPTION HIGHLIGHT ───
