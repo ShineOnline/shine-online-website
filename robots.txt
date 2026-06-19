@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portsmouthkitchenfitting.co.uk/sitemap.xml
